@@ -1,0 +1,58 @@
+./unmodified_source/linux-4.4.0/drivers/media/usb/au0828/au0828-cards.c
+121a122,149
+>         [AU0828_BOARD_MYGICA_6012A] = {
+>                 .name = "Mygica 6012A",
+>                 .tuner_type = TUNER_NXP_TDA18271,
+>                 .has_ir_i2c = 1,
+>                 .has_analog = 1,
+> 		.tuner_addr = 0x60,
+>                 .i2c_clk_divider = AU0828_I2C_CLK_250KHZ,
+> 		.input = {
+>                         {
+>                                 .type = AU0828_VMUX_TELEVISION,
+>                                 .vmux = AU8522_COMPOSITE_CH4_SIF,
+>                                 .amux = AU8522_AUDIO_SIF,
+>                         },
+>                         {
+>                                 .type = AU0828_VMUX_COMPOSITE,
+>                                 .vmux = AU8522_COMPOSITE_CH1,
+>                                 .amux = AU8522_AUDIO_NONE,
+>                                 .audio_setup = hvr950q_cs5340_audio,
+>                         },
+>                         {
+>                                 .type = AU0828_VMUX_SVIDEO,
+>                                 .vmux = AU8522_SVIDEO_CH13,
+>                                 .amux = AU8522_AUDIO_NONE,
+>                                 .audio_setup = hvr950q_cs5340_audio,
+>                         },
+>                 },
+>         },
+> 
+207a236
+> 	case AU0828_BOARD_MYGICA_6012A:
+264a294
+> 	case AU0828_BOARD_MYGICA_6012A:
+348a379,380
+> 	{ USB_DEVICE(0x05e1, 0x0400),
+>                 .driver_info = AU0828_BOARD_MYGICA_6012A },
+./unmodified_source/linux-4.4.0/drivers/media/usb/au0828/au0828-cards.h
+27a28
+> #define AU0828_BOARD_MYGICA_6012A 6
+./unmodified_source/linux-4.4.0/drivers/media/usb/au0828/au0828-core.c
+./unmodified_source/linux-4.4.0/drivers/media/usb/au0828/au0828-dvb.c
+587a588,596
+>         case AU0828_BOARD_MYGICA_6012A:
+>                 dvb->frontend = dvb_attach(au8522_attach,
+>                                 &hauppauge_woodbury_config,
+>                                 &dev->i2c_adap);
+>                 if (dvb->frontend != NULL)
+>                         dvb_attach(tda18271_attach, dvb->frontend,
+>                                    0x60, &dev->i2c_adap,
+>                                    &hauppauge_woodbury_tunerconfig);
+>                 break;
+./unmodified_source/linux-4.4.0/drivers/media/usb/au0828/au0828.h
+./unmodified_source/linux-4.4.0/drivers/media/usb/au0828/au0828-i2c.c
+./unmodified_source/linux-4.4.0/drivers/media/usb/au0828/au0828-input.c
+./unmodified_source/linux-4.4.0/drivers/media/usb/au0828/au0828-reg.h
+./unmodified_source/linux-4.4.0/drivers/media/usb/au0828/au0828-vbi.c
+./unmodified_source/linux-4.4.0/drivers/media/usb/au0828/au0828-video.c
